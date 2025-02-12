@@ -42,7 +42,7 @@ export default function Ticket() {
             <Image
               src="/Subtract.svg"
               alt="Subtract"
-              className="w-full h-full absolute top-0 z-0 "
+              className="w-full h-full absolute top-0 z-0 object-contain "
               width={1000}
               height={500}
             ></Image>
@@ -119,7 +119,7 @@ export default function Ticket() {
         </div>
 
         <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4 md:gap-[1rem] rounded-3xl  text-center  w-full text-white mt-9  ">
-          <Link href="/Home" className="bg-foreground border rounded-lg border-underlineBorder py-3 px-[4rem] w-full font-jeju text-nowrap">
+          <Link href="/" className="bg-foreground border rounded-lg border-underlineBorder py-3 px-[4rem] w-full font-jeju text-nowrap">
             Book Another Ticket
           </Link>
           <button className="bg-underlineBorder py-3 px-[5rem] rounded-lg w-full font-jeju ">

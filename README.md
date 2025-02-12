@@ -1,5 +1,5 @@
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
-# Conference Ticket Generator
+ <h1 align="center"> Conference Ticket Generator </h1>
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 ![Project Preview](https://i.ibb.co/zhjTr0mY/phone.png)
 
