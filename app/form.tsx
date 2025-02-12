@@ -252,7 +252,7 @@ export default function Form() {
               </div>
               <div className="space-y-2">
                 <label className="block text-left text-sm text-customGray">
-                  About the project
+                 Special Request? 
                 </label>
                 <textarea 
                 // className="w-full bg-transparent border border-border rounded-lg p-2 min-h-[100px] resize-none" 
@@ -278,11 +278,15 @@ export default function Form() {
                 Back
               </Link>
               <button
-                className="md:w-1/2 bg-underlineBorder rounded-lg py-2"
-                onClick={handleSubmit}
-              >
-                Get My Free Ticket
-              </button>
+  className={`md:w-1/2 bg-underlineBorder rounded-lg py-2 ${
+    loading ? "opacity-50 cursor-not-allowed" : ""
+  }`}
+  onClick={handleSubmit}
+  disabled={loading}
+>
+  {loading ? "Processing..." : "Get My Free Ticket"}
+</button>
+
             </div>
           </div>
         </div>
