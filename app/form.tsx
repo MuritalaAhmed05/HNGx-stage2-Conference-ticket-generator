@@ -274,7 +274,7 @@ export default function Form() {
             </form>
             {}
             <div className="flex flex-col md:flex-row  gap-4 mt-6 w-full ">
-              <Link href="/Home" className="md:w-1/2 border border-underlineBorder text-underlineBorder rounded-lg py-2">
+              <Link href="/" className="md:w-1/2 border border-underlineBorder text-underlineBorder rounded-lg py-2">
                 Back
               </Link>
               <button
