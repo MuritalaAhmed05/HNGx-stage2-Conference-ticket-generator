@@ -1,6 +1,8 @@
 # Conference Ticket Generator
 
-![Project Preview](/phone.png)(/image.png)
+![Project Preview](https://i.ibb.co/zhjTr0mY/phone.png)
+![Another Image](https://i.ibb.co/PszXsSQn/image.png)
+
 
 ## Overview
 The Conference Ticket Generator is a web application that allows users to generate personalized conference tickets by filling out a form with their details. The application ensures accessibility, state persistence, and responsive design, offering a seamless user experience.
