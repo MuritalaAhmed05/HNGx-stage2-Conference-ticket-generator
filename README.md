@@ -99,5 +99,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-_Add an image preview above after uploading to your repo._
 
