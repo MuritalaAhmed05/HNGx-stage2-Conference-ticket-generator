@@ -1,9 +1,10 @@
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 # Conference Ticket Generator
-
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 ![Project Preview](https://i.ibb.co/zhjTr0mY/phone.png)
-![Another Image](https://i.ibb.co/PszXsSQn/image.png)
 
 
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Rockstar-ExtraBold&color=blue&lines=𝓒𝓞𝓝𝓕𝓔𝓡𝓔𝓝𝓒𝓔+𝓣𝓘𝓒𝓚𝓔𝓣+𝓖𝓔𝓝𝓔𝓡𝓐𝓣𝓞𝓡+𝓑𝓨+𝓐𝓗𝓜𝓔𝓓)](https://git.io/typing-svg)
 ## Overview
 The Conference Ticket Generator is a web application that allows users to generate personalized conference tickets by filling out a form with their details. The application ensures accessibility, state persistence, and responsive design, offering a seamless user experience.
 
@@ -80,6 +81,7 @@ npm install
 # Start the development server
 npm run dev
 ```
+![Another Image](https://i.ibb.co/PszXsSQn/image.png)
 
 ## Technologies Used
 - **Next.js** – React framework for server-side rendering and static site generation.

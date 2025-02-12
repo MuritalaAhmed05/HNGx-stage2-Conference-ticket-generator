@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Conference Ticket Generator",
     description: "Create and personalize your conference tickets effortlessly.",
-    url: "https://yourwebsite.com/conference-ticket-generator",
+    url: "https://hngx-stage2-conference-ticket-generator-nn8xm6z5t.vercel.app/",
     type: "website",
     images: [
       {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Conference Ticket Generator",
     description: "Generate personalized conference tickets with ease.",
-    images: ["https://yourwebsite.com/og-image.png"],
+    images: ["https://i.ibb.co/zhjTr0mY/phone.png"],
   },
 };
 
