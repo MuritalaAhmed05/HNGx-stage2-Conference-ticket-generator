@@ -3,17 +3,22 @@ import React, { useEffect, useState } from "react";
 import { RiDownloadCloud2Line } from "react-icons/ri";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ImSpinner2 } from "react-icons/im";
+import { MdOutlineEmail } from "react-icons/md";
 import Link from "next/link";
 interface FormData {
   name: string;
   email: string;
-  request:  string;
+  request: string;
   avatar: string;
 }
 export default function Form() {
   const searchParams = useSearchParams();
-  const ticketType = decodeURIComponent(searchParams.get("ticketType") || "free")
-  const ticketCount = decodeURIComponent(searchParams.get("ticketCount") || "!")
+  const ticketType = decodeURIComponent(
+    searchParams.get("ticketType") || "free"
+  );
+  const ticketCount = decodeURIComponent(
+    searchParams.get("ticketCount") || "!"
+  );
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -23,8 +28,8 @@ export default function Form() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [avatar, setAvatar] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [shake, setShake] = useState<boolean>(false)
-  
+  const [shake, setShake] = useState<boolean>(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -37,12 +42,13 @@ export default function Form() {
       }
     }
   }, []);
-  
 
   useEffect(() => {
     localStorage.setItem("formData", JSON.stringify(formData));
   }, [formData]);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: "" }));
   };
@@ -66,7 +72,7 @@ export default function Form() {
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) {
       setShake(true);
-      setTimeout(() => setShake(false), 500); 
+      setTimeout(() => setShake(false), 500);
     }
     return Object.keys(newErrors).length === 0;
   };
@@ -75,17 +81,27 @@ export default function Form() {
   ) => {
     if (e) e.preventDefault();
     if (validateForm()) {
-      router.push(`/Ticket?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&avatar=${encodeURIComponent(formData.avatar)}&request=${encodeURIComponent(formData.request)}&ticketCount=${encodeURIComponent(ticketCount)}&ticketType=${encodeURIComponent(ticketType)}`);
+      router.push(
+        `/Ticket?name=${encodeURIComponent(
+          formData.name
+        )}&email=${encodeURIComponent(
+          formData.email
+        )}&avatar=${encodeURIComponent(
+          formData.avatar
+        )}&request=${encodeURIComponent(
+          formData.request
+        )}&ticketCount=${encodeURIComponent(
+          ticketCount
+        )}&ticketType=${encodeURIComponent(ticketType)}`
+      );
 
-      console.log("Validation Passed ✅", formData);
       localStorage.removeItem("formData");
       const updatedData = { ...formData, avatar: "" };
-    localStorage.setItem("formData", JSON.stringify(updatedData));
-      setFormData({ name: "", email: "", avatar: "", request: ""});
+      localStorage.setItem("formData", JSON.stringify(updatedData));
+      setFormData({ name: "", email: "", avatar: "", request: "" });
       setAvatar("");
     } else {
       setShake(true);
-      console.log("Validation Failed ❌", errors);
     }
   };
   const handleFileUpload = async (file: File) => {
@@ -93,6 +109,7 @@ export default function Form() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "ml_default");
+
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/deltdoijc/image/upload",
@@ -101,21 +118,30 @@ export default function Form() {
           body: formData,
         }
       );
+
+      if (!res.ok) {
+        throw new Error(`Upload failed with status ${res.status}`);
+      }
+
       const data = await res.json();
+
       if (data.secure_url) {
         setAvatar(data.secure_url);
         setFormData((prev) => ({ ...prev, avatar: data.secure_url }));
-
-      
         setErrors((prevErrors) => ({ ...prevErrors, avatar: "" }));
-        console.log("Uploaded successfully:", data.secure_url);
+      } else {
+        throw new Error("No secure URL returned from Cloudinary");
       }
     } catch (error) {
-      console.error("Upload failed", error);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        avatar: "Failed to upload. Please check your network and try again.",
+      }));
     } finally {
       setLoading(false);
     }
   };
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) handleFileUpload(file);
@@ -164,7 +190,9 @@ export default function Form() {
                         accept="image/*"
                         className="absolute inset-0 opacity-0 cursor-pointer"
                         onChange={handleFileChange}
-                        aria-describedby={errors.avatar ? "avatar-error" : undefined}
+                        aria-describedby={
+                          errors.avatar ? "avatar-error" : undefined
+                        }
                       />
                       {loading ? (
                         <div className="flex flex-col items-center">
@@ -178,7 +206,7 @@ export default function Form() {
                           <img
                             src={avatar}
                             alt="Avatar"
-                            className="w-full h-full object-cover rounded-3xl"
+                            className="w-full h-full object-cover aspect-square border-opacity-50 rounded-3xl"
                           />
                           <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-0 hover:opacity-100 transition-opacity">
                             <RiDownloadCloud2Line className="text-3xl" />
@@ -232,18 +260,23 @@ export default function Form() {
                 <label className="block text-left text-sm text-customGray">
                   Enter your email
                 </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full bg-transparent border rounded-lg p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary ${
-                    errors.email
-                      ? "border-red-500 ring-red-500 animate-wobble"
-                      : "border-border"
-                  }`}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                />
+                <div className="relative flex items-center">
+                  <MdOutlineEmail className="absolute left-3 text-white text-xl" />
+
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`w-full bg-transparent border rounded-lg p-2 pl-10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary ${
+                      errors.email
+                        ? "border-red-500 ring-red-500 animate-wobble"
+                        : "border-border"
+                    }`}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                  />
+                </div>
+
                 {errors.email && (
                   <p className="text-red-500 text-left text-sm">
                     {errors.email}
@@ -252,12 +285,11 @@ export default function Form() {
               </div>
               <div className="space-y-2">
                 <label className="block text-left text-sm text-customGray">
-                 Special Request? 
+                  Special Request?
                 </label>
-                <textarea 
-                // className="w-full bg-transparent border border-border rounded-lg p-2 min-h-[100px] resize-none" 
-                value={formData.request}
-                name="request"
+                <textarea
+                  value={formData.request}
+                  name="request"
                   onChange={handleChange}
                   className={`w-full bg-transparent border rounded-lg p-2 transition-all min-h-[100px] resize-none duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary ${
                     errors.request
@@ -265,7 +297,7 @@ export default function Form() {
                       : "border-border"
                   }`}
                 />
-                 {errors.request && (
+                {errors.request && (
                   <p className="text-red-500 text-left text-sm">
                     {errors.request}
                   </p>
@@ -274,19 +306,21 @@ export default function Form() {
             </form>
             {}
             <div className="flex flex-col md:flex-row  gap-4 mt-6 w-full ">
-              <Link href="/" className="md:w-1/2 border border-underlineBorder text-underlineBorder rounded-lg py-2">
+              <Link
+                href="/"
+                className="md:w-1/2 border border-underlineBorder text-underlineBorder rounded-lg py-2"
+              >
                 Back
               </Link>
               <button
-  className={`md:w-1/2 bg-underlineBorder rounded-lg py-2 ${
-    loading ? "opacity-50 cursor-not-allowed" : ""
-  }`}
-  onClick={handleSubmit}
-  disabled={loading}
->
-  {loading ? "Processing..." : "Get My Free Ticket"}
-</button>
-
+                className={`md:w-1/2 bg-underlineBorder rounded-lg py-2 ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={handleSubmit}
+                disabled={loading}
+              >
+                {loading ? "Processing..." : "Get My Free Ticket"}
+              </button>
             </div>
           </div>
         </div>

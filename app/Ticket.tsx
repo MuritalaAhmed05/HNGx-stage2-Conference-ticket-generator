@@ -75,16 +75,16 @@ export default function Ticket() {
                   <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto bg-[#08343c] text-white p-3 sm:p-4 rounded-lg border-2 border-[#12464e]">
                     <div className="grid grid-cols-2 gap-0 text-xs sm:text-sm">
                       <div className="border-r-2 border-[#12464e] p-2 border-b-2">
-                        <p className="font-semibold mb-1 sm:mb-2 text-gray-400">
+                        <p className="font-semibold mb-1 sm:mb-2 text-gray-400 text-[10px] md:text-xs text-nowrap">
                           Enter your name
                         </p>
-                        <p className="font-bold break-words">{name}</p>
+                        <p className="font-bold break-words truncate">{name}</p>
                       </div>
                       <div className="p-2 border-b-2 border-[#12464e]">
-                        <p className="font-semibold mb-1 sm:mb-2 text-gray-400 text-nowrap">
+                        <p className="font-semibold mb-1 sm:mb-2 text-gray-400 text-[10px] text-nowrap md:text-xs">
                           Enter your email *
                         </p>
-                        <p className="font-bold break-words whitespace-normal">
+                        <p className="font-bold  truncate">
                           {email}
                         </p>
                       </div>
@@ -113,7 +113,7 @@ export default function Ticket() {
             <img
               src="Bar Code.svg"
               alt=""
-              className="md:w-2/5  mb-9 mt-3 mb:mt-0 md:mb-6 z-10 "
+              className="md:w-2/5  mb-5 mt-3 mb:mt-0 md:mb-6 z-10 "
             />
           </div>
         </div>
