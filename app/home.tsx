@@ -73,8 +73,8 @@ export default function Home() {
             onChange={(e) => setTicketCount(Number(e.target.value))}
             className="w-full bg-foreground border border-border rounded-lg p-3 outline-none"
           >
-            {[1, 2, 3].map((num) => (
-              <option key={num} value={num}>
+            {[1, 2, 3,4,5,6,7,8,9,10].map((num) => (
+              <option key={num} value={num} className="rounded-md hover-bg-underlineBorder">
                 {num}
               </option>
             ))}
