@@ -9,7 +9,7 @@ export default function Home() {
   const tickets = [
     { id: "free", label: "Free", price: 0, access: "REGULAR ACCESS" },
     { id: "Vip", label: "$150", price: 150, access: "VIP ACCESS" },
-    { id: "Vip2", label: "$150", price: 150, access: "VIP ACCESS" },
+    { id: "VVip", label: "$150", price: 150, access: "VVIP ACCESS" },
   ];
 
   return (
@@ -74,7 +74,7 @@ export default function Home() {
             className="w-full bg-foreground border border-border rounded-lg p-3 outline-none"
           >
             {[1, 2, 3,4,5,6,7,8,9,10].map((num) => (
-              <option key={num} value={num} className="rounded-md hover-bg-underlineBorder">
+              <option key={num} value={num}>
                 {num}
               </option>
             ))}
