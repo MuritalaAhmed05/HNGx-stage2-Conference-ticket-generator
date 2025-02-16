@@ -8,8 +8,8 @@ export default function Home() {
 
   const tickets = [
     { id: "free", label: "Free", price: 0, access: "REGULAR ACCESS" },
-    { id: "vip", label: "$150", price: 150, access: "VIP ACCESS" },
-    { id: "vip2", label: "$150", price: 150, access: "VIP ACCESS" },
+    { id: "Vip", label: "$150", price: 150, access: "VIP ACCESS" },
+    { id: "Vip2", label: "$150", price: 150, access: "VIP ACCESS" },
   ];
 
   return (

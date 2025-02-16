@@ -13,9 +13,10 @@ interface FormData {
 }
 export default function Form() {
   const searchParams = useSearchParams();
-  const ticketType = decodeURIComponent(
-    searchParams.get("ticketType") || "free"
-  );
+  let ticketType = searchParams.get("ticketType") || "Free";
+  ticketType = decodeURIComponent(ticketType);
+  ticketType = ticketType.charAt(0).toUpperCase() + ticketType.slice(1);
+  
   const ticketCount = decodeURIComponent(
     searchParams.get("ticketCount") || "!"
   );
@@ -319,7 +320,7 @@ export default function Form() {
                 onClick={handleSubmit}
                 disabled={loading}
               >
-                {loading ? "Processing..." : "Get My Free Ticket"}
+                {loading ? "Processing..." : `Get My ${ticketType} Ticket`}
               </button>
             </div>
           </div>
